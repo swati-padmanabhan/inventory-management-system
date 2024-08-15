@@ -19,8 +19,9 @@ namespace InventoryManagement.Models
 
         public override string ToString()
         {
-            return $"Supplier Id: {SupplierId}\n" +
-                $"Inventory Id : {InventoryId}" +
+            return
+                $"Supplier Id: {SupplierId}\n" +
+                $"Inventory Id : {InventoryId}\n" +
                 $"Name: {Name}\n" +
                 $"Contact Information: {ContactInformation}\n";
         }

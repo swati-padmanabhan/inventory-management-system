@@ -13,7 +13,7 @@ namespace InventoryManagement.ViewControllers
         {
             while (true)
             {
-                //Console.Clear();
+                Console.Clear();
                 Console.WriteLine("====================================");
                 Console.WriteLine("     SUPPLIER MANAGEMENT MENU       ");
                 Console.WriteLine("====================================");
@@ -56,10 +56,14 @@ namespace InventoryManagement.ViewControllers
                 catch (InvalidChoiceException ice)
                 {
                     Console.WriteLine(ice.Message);
+                    Console.WriteLine("Press Enter to Continue...");
+                    var choice = Console.ReadLine();
                 }
                 catch (FormatException fe)
                 {
                     Console.WriteLine("Input format is incorrect. Please enter valid data.");
+                    Console.WriteLine("Press Enter to Continue...");
+                    var choice = Console.ReadLine();
                 }
             }
         }
@@ -91,10 +95,18 @@ namespace InventoryManagement.ViewControllers
 
                 _supplierRepository.Add(supplier);
                 Console.WriteLine("Supplier added successfully.");
+                Console.ReadLine();
             }
             catch (SupplierAlreadyExistsException ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.ReadLine();
+            }
+            catch (InventoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
         }
 
@@ -130,10 +142,18 @@ namespace InventoryManagement.ViewControllers
 
                 _supplierRepository.Update(supplier);
                 Console.WriteLine("Supplier Updated Successfully...");
+                Console.ReadLine();
             }
             catch (SupplierNotFoundException sfe)
             {
                 Console.WriteLine(sfe.Message);
+                Console.ReadLine();
+            }
+            catch (InventoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
         }
 
@@ -153,10 +173,18 @@ namespace InventoryManagement.ViewControllers
                 }
                 _supplierRepository.Delete(supplier);
                 Console.WriteLine("Supplier Deleted Successfully.");
+                Console.ReadLine();
             }
             catch (SupplierNotFoundException sfe)
             {
                 Console.WriteLine(sfe.Message);
+                Console.ReadLine();
+            }
+            catch (InventoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
         }
 
@@ -174,10 +202,18 @@ namespace InventoryManagement.ViewControllers
                     throw new SupplierNotFoundException("Supplier Not Found...");
                 }
                 Console.WriteLine(supplier);
+                Console.ReadLine();
             }
             catch (SupplierNotFoundException sfe)
             {
                 Console.WriteLine(sfe.Message);
+                Console.ReadLine();
+            }
+            catch (InventoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
 
         }
@@ -185,15 +221,26 @@ namespace InventoryManagement.ViewControllers
 
         public void ViewAllSuppliers()
         {
-            int inventoryId = GetInventoryId();
-            var suppliers = _supplierRepository.GetAll(inventoryId);
-            if (suppliers.Count == 0)
+            try
             {
-                throw new SupplierNotFoundException("Supplier Not Found...");
+                int inventoryId = GetInventoryId();
+                var suppliers = _supplierRepository.GetAll(inventoryId);
+                if (suppliers.Count == 0)
+                {
+                    throw new SupplierNotFoundException("Supplier Not Found...");
+                }
+                foreach (var supplier in suppliers)
+                {
+                    Console.WriteLine(supplier);
+                }
+                Console.WriteLine("Press Enter to Continue...");
+                var choice = Console.ReadLine();
             }
-            foreach (var supplier in suppliers)
+            catch (InventoryNotFoundException ex)
             {
-                Console.WriteLine(supplier);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
         }
 

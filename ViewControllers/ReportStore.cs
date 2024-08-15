@@ -12,7 +12,7 @@ namespace InventoryManagement.ViewControllers
         {
 
 
-            //Console.Clear();
+            Console.Clear();
             Console.WriteLine("====================================");
             Console.WriteLine("         GENERATE REPORT MENU       ");
             Console.WriteLine("====================================");
@@ -26,18 +26,19 @@ namespace InventoryManagement.ViewControllers
                 inventories.ForEach(inventory =>
                 {
                     Console.WriteLine(inventory);
-                    Console.WriteLine("List of Products");
+                    Console.WriteLine("\n************ Products **************\n");
 
                     var products = inventory.Products;
                     if (products.Count == 0)
                     {
-                        Console.WriteLine("No Products Found\n");
+                        throw new ProductNotFoundException("No Products Found\n");
                     }
                     else
                     {
                         products.ForEach(product => Console.WriteLine(product));
                     }
-                    Console.WriteLine("List of Suppliers");
+                    Console.WriteLine("\n************ Suppliers **************\n");
+
                     var suppliers = inventory.Suppliers;
                     if (suppliers.Count == 0)
                     {
@@ -47,7 +48,7 @@ namespace InventoryManagement.ViewControllers
                     {
                         suppliers.ForEach(supplier => Console.WriteLine(supplier));
                     }
-                    Console.WriteLine("List of Transactions");
+                    Console.WriteLine("\n************ Transactions **************\n");
                     var transactions = inventory.Transactions;
                     if (transactions.Count == 0)
                     {
@@ -60,6 +61,7 @@ namespace InventoryManagement.ViewControllers
 
                 }
                 );
+                var choice = Console.ReadLine();
             }
 
         }

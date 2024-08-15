@@ -21,7 +21,8 @@ namespace InventoryManagement.Models
 
         public override string ToString()
         {
-            return $"Transaction Id: {TransactionId}\n" +
+            return
+                $"Transaction Id: {TransactionId}\n" +
                 $"Inventory Id: {InventoryId}\n" +
                 $"Product Id: {ProductId}\n" +
                 $"Transaction Type: {Type}\n" +

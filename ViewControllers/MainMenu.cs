@@ -53,15 +53,22 @@ namespace InventoryManagement.ViewControllers
                             break;
                         default:
                             throw new InvalidChoiceException("Invalid Choice, Please Choose Between 1 and 5 only...");
+
+
                     }
                 }
                 catch (FormatException fe)
                 {
-                    Console.WriteLine("Input format is incorrect. Please enter valid data." + fe.Message);
+                    Console.WriteLine(fe.Message);
+                    Console.WriteLine("Press Enter to Continue...");
+                    var choice = Console.ReadLine();
                 }
                 catch (InvalidChoiceException ice)
                 {
                     Console.WriteLine(ice.Message);
+                    Console.WriteLine("Press Enter to Continue...");
+                    var choice = Console.ReadLine();
+
                 }
             }
         }

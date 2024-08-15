@@ -14,7 +14,7 @@ namespace InventoryManagement.ViewControllers
         {
             while (true)
             {
-                //Console.Clear();
+                Console.Clear();
                 Console.WriteLine("==================================");
                 Console.WriteLine("      PRODUCT MANAGEMENT MENU     ");
                 Console.WriteLine("==================================");
@@ -57,10 +57,14 @@ namespace InventoryManagement.ViewControllers
                 catch (InvalidChoiceException ice)
                 {
                     Console.WriteLine(ice.Message);
+                    Console.WriteLine("Press Enter to Continue...");
+                    var choice = Console.ReadLine();
                 }
                 catch (FormatException fe)
                 {
                     Console.WriteLine("Input format is incorrect. Please enter valid data.");
+                    Console.WriteLine("Press Enter to Continue...");
+                    var choice = Console.ReadLine();
                 }
             }
         }
@@ -70,6 +74,7 @@ namespace InventoryManagement.ViewControllers
             try
             {
                 int inventoryId = GetInventoryId();
+
 
                 Console.WriteLine("Enter Product Name: ");
                 string name = Console.ReadLine();
@@ -103,19 +108,32 @@ namespace InventoryManagement.ViewControllers
                     Name = name,
                     Description = description,
                     Quantity = quantity,
-                    Price = price
+                    Price = price,
+                    InventoryId = inventoryId
                 };
                 _productRepository.Add(product);
 
                 Console.WriteLine("Product added successfully.");
+                Console.ReadLine();
             }
             catch (ProductAlreadyExistsException ex)
             {
                 Console.WriteLine("Product with same name already exists.");
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
             catch (InvalidValueException ive)
             {
                 Console.WriteLine(ive.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
+
+            }
+            catch (InventoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
         }
 
@@ -159,10 +177,20 @@ namespace InventoryManagement.ViewControllers
 
                 _productRepository.Update(product);
                 Console.WriteLine("Product Updated Successfully...");
+                Console.ReadLine();
+
             }
             catch (ProductNotFoundException pfe)
             {
                 Console.WriteLine(pfe.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
+            }
+            catch (InventoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
 
         }
@@ -184,10 +212,20 @@ namespace InventoryManagement.ViewControllers
                 _productRepository.Delete(product);
 
                 Console.WriteLine("Product deleted successfully.");
+                Console.ReadLine();
+
             }
             catch (ProductNotFoundException ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
+            }
+            catch (InventoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
         }
 
@@ -205,25 +243,45 @@ namespace InventoryManagement.ViewControllers
                     throw new ProductNotFoundException("Product Not Found...");
                 }
                 Console.WriteLine(product);
+                Console.ReadLine();
             }
             catch (ProductNotFoundException ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
+            }
+            catch (InventoryNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
         }
 
 
         public void ViewAllProducts()
         {
-            int inventoryId = GetInventoryId();
-            var products = _productRepository.GetAll(inventoryId);
-            if (products.Count == 0)
+            try
             {
-                throw new ProductNotFoundException("Product Not Found...");
+                int inventoryId = GetInventoryId();
+                var products = _productRepository.GetAll(inventoryId);
+                if (products.Count == 0)
+                {
+                    throw new ProductNotFoundException("Product Not Found...");
+                }
+                foreach (var product in products)
+                {
+                    Console.WriteLine(product);
+                }
+                Console.WriteLine("Press Enter to Continue...");
+                var choice = Console.ReadLine();
             }
-            foreach (var product in products)
+            catch (InventoryNotFoundException ex)
             {
-                Console.WriteLine(product);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Press Enter to Continue...");
+                Console.ReadLine();
             }
         }
 
@@ -238,6 +296,7 @@ namespace InventoryManagement.ViewControllers
             }
             return inventoryId;
         }
+
 
     }
 

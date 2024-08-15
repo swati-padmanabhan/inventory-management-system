@@ -26,10 +26,6 @@ namespace InventoryManagement.Repositories
                            .ToList();
         }
 
-        //public List<Transaction> GetAll(int id)
-        //{
-        //    return _context.Transactions.ToList();
-        //}
 
         public void Add(int id, int quantity, int inventoryId)
         {
@@ -54,12 +50,12 @@ namespace InventoryManagement.Repositories
             var transaction = new Transaction
             {
                 ProductId = id,
-                Type = "Add Stock",
+                Type = "Remove Stock",
                 Quantity = quantity,
                 Date = DateTime.Now,
                 InventoryId = inventoryId
             };
-            _context.Transactions.Remove(transaction);
+            _context.Transactions.Add(transaction);
             _context.SaveChanges();
         }
 
