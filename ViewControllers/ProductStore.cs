@@ -10,7 +10,7 @@ namespace InventoryManagement.ViewControllers
         private static readonly ProductRepository _productRepository = new ProductRepository(new InventoryContext());
 
 
-        public void DisplaySubMenu()
+        public static void DisplaySubMenu()
         {
             while (true)
             {
@@ -69,7 +69,7 @@ namespace InventoryManagement.ViewControllers
             }
         }
 
-        public void AddProduct()
+        public static void AddProduct()
         {
             try
             {
@@ -137,7 +137,7 @@ namespace InventoryManagement.ViewControllers
             }
         }
 
-        public void UpdateProduct()
+        public static void UpdateProduct()
         {
             try
             {
@@ -195,7 +195,7 @@ namespace InventoryManagement.ViewControllers
 
         }
 
-        public void DeleteProduct()
+        public static void DeleteProduct()
         {
             try
             {
@@ -229,7 +229,7 @@ namespace InventoryManagement.ViewControllers
             }
         }
 
-        public void ViewProductDetails()
+        public static void ViewProductDetails()
         {
             try
             {
@@ -260,7 +260,7 @@ namespace InventoryManagement.ViewControllers
         }
 
 
-        public void ViewAllProducts()
+        public static void ViewAllProducts()
         {
             try
             {

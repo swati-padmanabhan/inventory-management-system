@@ -8,7 +8,7 @@ namespace InventoryManagement.ViewControllers
     {
         private static readonly InventoryRepository _inventoryRepository = new InventoryRepository(new InventoryContext());
 
-        public void DisplaySubMenu()
+        public static void DisplaySubMenu()
         {
 
 

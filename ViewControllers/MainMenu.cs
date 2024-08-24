@@ -4,12 +4,8 @@ namespace InventoryManagement.ViewControllers
 {
     internal class MainMenu
     {
-        private readonly ProductStore _productStore = new ProductStore();
-        private readonly SupplierStore _supplierStore = new SupplierStore();
-        private readonly TransactionStore _transactionStore = new TransactionStore();
-        private readonly ReportStore _reportStore = new ReportStore();
 
-        public void DisplayMenu()
+        public static void DisplayMenu()
         {
 
             while (true)
@@ -36,16 +32,16 @@ namespace InventoryManagement.ViewControllers
                     switch (choice)
                     {
                         case "1":
-                            _productStore.DisplaySubMenu();
+                            ProductStore.DisplaySubMenu();
                             break;
                         case "2":
-                            _supplierStore.DisplaySubMenu();
+                            SupplierStore.DisplaySubMenu();
                             break;
                         case "3":
-                            _transactionStore.DisplaySubMenu();
+                            TransactionStore.DisplaySubMenu();
                             break;
                         case "4":
-                            _reportStore.DisplaySubMenu();
+                            ReportStore.DisplaySubMenu();
                             break;
                         case "5":
                             Console.WriteLine("Exiting the program. Goodbye!");

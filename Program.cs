@@ -6,8 +6,7 @@ namespace InventoryManagement
     {
         static void Main(string[] args)
         {
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.DisplayMenu();
+            MainMenu.DisplayMenu();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace InventoryManagement.ViewControllers
     {
         private static readonly SupplierRepository _supplierRepository = new SupplierRepository(new InventoryContext());
 
-        public void DisplaySubMenu()
+        public static void DisplaySubMenu()
         {
             while (true)
             {
@@ -25,7 +25,7 @@ namespace InventoryManagement.ViewControllers
                 Console.WriteLine("  [5] View All Suppliers");
                 Console.WriteLine("  [6] Go Back To Main Menu");
                 Console.WriteLine();
-                Console.Write("Enter your choice (1-6): ");
+                Console.Write("Enter your ch    oice (1-6): ");
 
                 try
                 {
@@ -68,7 +68,7 @@ namespace InventoryManagement.ViewControllers
             }
         }
 
-        public void AddSupplier()
+        public static void AddSupplier()
         {
             try
             {
@@ -110,7 +110,7 @@ namespace InventoryManagement.ViewControllers
             }
         }
 
-        public void UpdateSupplier()
+        public static void UpdateSupplier()
         {
             try
             {
@@ -157,7 +157,7 @@ namespace InventoryManagement.ViewControllers
             }
         }
 
-        public void DeleteSupplier()
+        public static void DeleteSupplier()
         {
             try
             {
@@ -188,7 +188,7 @@ namespace InventoryManagement.ViewControllers
             }
         }
 
-        public void ViewSupplierDetails()
+        public static void ViewSupplierDetails()
         {
             try
             {
@@ -219,7 +219,7 @@ namespace InventoryManagement.ViewControllers
         }
 
 
-        public void ViewAllSuppliers()
+        public static void ViewAllSuppliers()
         {
             try
             {

@@ -10,7 +10,7 @@ namespace InventoryManagement.ViewControllers
         private static readonly TransactionRepository _transactionRepository = new TransactionRepository(new InventoryContext());
 
 
-        public void DisplaySubMenu()
+        public static void DisplaySubMenu()
         {
             while (true)
             {
@@ -63,7 +63,7 @@ namespace InventoryManagement.ViewControllers
             }
         }
 
-        public void AddStock()
+        public static void AddStock()
         {
             try
             {
@@ -105,7 +105,7 @@ namespace InventoryManagement.ViewControllers
             }
         }
 
-        public void RemoveStock()
+        public static void RemoveStock()
         {
             try
             {
@@ -151,7 +151,7 @@ namespace InventoryManagement.ViewControllers
             }
         }
 
-        public void ViewTransactionHistory()
+        public static void ViewTransactionHistory()
         {
             try
             {
@@ -173,7 +173,7 @@ namespace InventoryManagement.ViewControllers
         }
 
 
-        public int GetInventoryId()
+        public static int GetInventoryId()
         {
             Console.WriteLine("Enter Inventory Id: ");
             int inventoryId = Convert.ToInt32(Console.ReadLine());
